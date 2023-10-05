@@ -1,0 +1,25 @@
+body {
+    text-align: center;
+    background: #ffffff;
+}
+table {
+    background: #ffffff;
+    border: #d8d8d8;
+    margin: auto;
+    text-align: center;
+    width: 90%;
+    height: 20%;
+}
+#paketfree {
+    background: #63b6ff;;
+}
+#font1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #ffffff;
+}
+
+.font2,
+.font3,
+.font4 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
