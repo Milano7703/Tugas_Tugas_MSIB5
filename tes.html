@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Online</title>
+</head>
+<body>
+    <form id="tokoForm">
+        <table style="width: 100%; background-color: aqua; border: solid; text-align: center;">
+            <tr>
+                <th colspan="2"><h2>Toko Online M1NG</h2></th>
+            </tr>
+            <tr>
+                <td><label for="nama">Nama Pelanggan:</label>
+                <input type="text" id="nama" name="nama"><br><br></td>
+            </tr>
+            <tr>
+                <td><label for="produk">Produk:</label>
+                <select id="produk" name="produk">
+                <option value="TV">TV</option>
+                <option value="AC">AC</option>
+                <option value="Kulkas">Kulkas</option>
+                </select><br><br></td>
+            </tr>
+            <tr>
+                <td><label for="jumlah">Banyak Item Produk:</label>
+                <input type="number" id="jumlah" name="jumlah" min="1"><br><br></td>
+            </tr>
+            <tr>
+                <td><button type="button" id="proses" name="proses" onclick="transaksi()">Beli</button></td>
+            </tr>
+    </table>
+    </form>
+
+    <!-- Menampilkan hasil transaksi dalam bentuk teks -->
+    <h2>Hasil Transaksi</h2>
+    <p id="hasilTransaksi"></p>
+
+    <script>
+        function transaksi() {
+            var nama = document.getElementById("nama").value;
+            var produk = document.getElementById("produk").value;
+            var jumlah = parseInt(document.getElementById("jumlah").value);
+            var hargaSatuan = 0;
+            var diskon = 0;
+            var ppn = 0;
+
+            // Menggunakan switch case untuk menentukan harga produk
+            switch (produk) {
+                case "TV":
+                    hargaSatuan = 2000000;
+                    break;
+                case "AC":
+                    hargaSatuan = 3000000;
+                    break;
+                case "Kulkas":
+                    hargaSatuan = 4000000;
+                    break;
+                default:
+                    alert("Produk tidak valid");
+                    return;
+            }
+
+            var hargaKotor = hargaSatuan * jumlah;
+
+            // Menghitung diskon berdasarkan ketentuan
+            if (produk === "Kulkas" && jumlah >= 3) {
+                diskon = 0.3 * hargaKotor;
+            } else if (produk === "AC" && jumlah >= 3) {
+                diskon = 0.2 * hargaKotor;
+            } else {
+                diskon = 0.1 * hargaKotor;
+            }
+
+            // Menghitung PPN
+            ppn = 0.1 * (hargaKotor - diskon);
+
+            // Menghitung harga bayar
+            var hargaBayar = (hargaKotor - diskon) + ppn;
+
+            // Menampilkan hasil dalam bentuk teks
+            var hasilTransaksi =
+                "Nama Pelanggan: " + nama + "<br>" +
+                "Produk yang Dibeli: " + produk + "<br>" +
+                "Harga Satuan: Rp " + hargaSatuan.toLocaleString() + "<br>" +
+                "Jumlah Item Produk yang Dibeli: " + jumlah + "<br>" +
+                "Harga Kotor: Rp " + hargaKotor.toLocaleString() + "<br>" +
+                "Diskon: Rp " + diskon.toLocaleString() + "<br>" +
+                "PPN: Rp " + ppn.toLocaleString() + "<br>" +
+                "Harga Bayar: Rp " + hargaBayar.toLocaleString();
+
+            document.getElementById("hasilTransaksi").innerHTML = hasilTransaksi;
+        }
+    </script>
+</body>
+</html>
