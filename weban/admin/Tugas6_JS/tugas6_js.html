@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/styletugas6.css">
+    <script src="js/tugas6.js"></script>
+    <script type="text/javascript">
+        $("document").ready (function(){
+            $("#div1").mousedown(function(){
+                $(this).css({
+                    background: "url('images/Milano.png')"
+                });
+            });
+            $("div").mouseover(function(){
+                $(this).css({
+                    background: "red"
+                });
+            });
+            $("#div2").mousedown(function(){
+                $(this).css({
+                    background: "url('images/moto.png')"
+                });
+            });
+            $("#div3").mousedown(function(){
+                $(this).css({
+                    background: "url('images/keahlian.png')"
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    
+    <h2>Letakkan kursor ke masing-masing kotak untuk melihat gambar</h2>
+
+    <div id="div1">Profil</div>
+    <div id="div2">Moto Hidup</div>
+    <div id="div3">Keahlian</div>
+</body>
+</html>
