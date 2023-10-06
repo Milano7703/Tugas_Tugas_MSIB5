@@ -1,0 +1,81 @@
+Capture-lah perintah2 SQL dan beri komentar pada perintah queri berikut ini:
+
+- masuk ke ruang DB melalui CMD
+  ( mysql -u root -p )
+
+- tampilkan database yang sudah dibuat
+  ( SHOW DATABASE; )
+
+- buat database baru : dbpegawai
+  (create database dbpegawaisib5;)
+
+- masuk ke ruang database dbpegawai
+  (use dbpegawaisib5;)
+
+- tampilkan tabel2 yang sudah ada di dbpegawai
+  (show tables;)
+
+- buat tabel pegawai field-field:
+
+  1. id int primary key
+
+  2. nip char dengan constraint: wajib diisi, tidak boleh sama & 5 karakter
+
+  3. nama varchar dengan constraint: wajib diisi dan maksimal 30 karakter
+
+  4. gender enum('L','P') dengan constraint: wajib diisi
+
+  5. umur int dengan constraint: wajib diisi
+
+  6. berat_badan float
+  (create table pegawai (id int primary key, nip char(5) not null unique, nama varchar(30) 
+  not null, gender enum('L','P') not null, umur int not null, berat_badan float);)
+
+- tampilkan database yang sudah dibuat
+  (show databases;)
+
+- lihat deskripsi tabel pegawai yang sudah dibuat
+  (desc pegawai;)
+
+
+*KUMPULAN QUERY MYSQL*
+//melihat seluruh database
+SHOW DATABASES;
+//membuat database baru
+CREATE DATABASE pegawaisib5;
+//menggunakan database
+use pegawaisib5;
+//proses DDL CREATE
+//membuat table
+CREATE TABLE jenis(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    nama varchar(30) NOT NULL unique
+);
+/*id adalah nama kolom atau header kolom
+ini adalah tipe database
+PRIMARY KEY adalah key atau kunci dari sebuah table
+AUTO_INCREMENT adalah key untuk automatisasi penomoran
+NOT NULL menandakan kolom tersebut tidak boleh kosong jika data mulai diisi
+unique adalah key untuk kolom agar data tidak boleh sama.*/
+//untuk melihat detail tabel
+DESC jenis;
+//membuat table relasi (produk ke jenis)
+CREATE TABLE produk (
+    id int PRIMARY KEY AUTO_INCREMENT,
+    nama varchar(30) NOT NULL UNIQUE,
+    harga double NOT NULL,
+    stok int NOT NULL,
+    idjenis int NOT NULL REFERENCES jenis(id),
+    foto varchar(30));
+//menambahkan column baru
+ALTER TABLE jenis ADD COLUMN IF NOT EXISTS
+keterangan varchar(50) AFTER nama;
+//mengubah nama kolom
+ALTER TABLE jenis CHANGE keterangan ket varchar(50);
+//mengubah tipe data
+ALTER TABLE jenis MODIFY ket TEXT AFTER nama;
+//menghapus kolom
+ALTER TABLE jenis DROP COLUMN ket;
+//mengubah
+ALTER TABLE jenis RENAME TO jenis_produk;
+
